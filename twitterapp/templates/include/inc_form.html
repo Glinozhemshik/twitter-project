@@ -1,0 +1,7 @@
+{% if user.is_active %}
+        <form action="" method="GET" role="form">
+            {% if error %} {{ error }} {% endif %}
+            <input class="form-control mr-sm-2" id="text-mess" type="text" placeholder="message" value="" name="text_message" maxlength="250" >
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add new message</button>
+        </form>
+    {% endif %}

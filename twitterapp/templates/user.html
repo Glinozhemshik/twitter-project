@@ -1,0 +1,10 @@
+
+ {% extends 'base.html' %}
+ {% block content %}
+       {% for i in mess %}
+           <div class="col-md-12">
+                <p class="text-warning">{{ i.text }}<a href="{% url 'edit_twit' pk=i.id%}"><i class="fas fa-pencil-alt"></i></a></p>
+               <strong>{{ i.created_date }}</strong><br>
+           </div>
+        {% endfor %}
+ {% endblock %}
