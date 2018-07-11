@@ -16,13 +16,8 @@ def form_twit(request):
             form.user = request.user
             form.save()
             return redirect("/")
-    # error = False
-    # a = request.GET.get('text_message', '')
-    # if str(a) != '' and len(a) <= 250:
-    #    i = Twit.objects.create(user=request.user, text=a)
-       # i.save()
     else:
-       # error = "Error"
+
         form = TwitForm()
         mess = Twit.objects.all()
         paginator = Paginator(mess, 10)
@@ -38,7 +33,7 @@ def user(request, pk):
         return render(request, 'user.html', {"mess": mess})
 
 
-def redacttwit(request, pk):
+def edit_twit(request, pk):
     mess = get_object_or_404(Twit, pk=pk, user=request.user)
     if request.method == 'POST':
         form = TwitForm(data=request.POST, instance=mess)
