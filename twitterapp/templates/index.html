@@ -2,38 +2,40 @@
     {% load bootstrap4 %}
     {% block content %}
     <!-- Begin page content -->
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
       <h1 class="mt-5">Twitter-project</h1>
         {% if user.is_active %}
         <form action="" method="POST" role="form">
             {% if error %} {{ error }} {% endif %}
             {% csrf_token %}
             {% bootstrap_form form %}
+            {% bootstrap_form_errors form layout='inline' %}
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add new message</button>
         </form>
     {% endif %}
         <div class="row">
         {% for i in mess %}
            <div class="col-md-12">
-                <p class="text-warning">{{ i.text }}</p>
-               <strong>{{ i.created_date }}</strong><br>
+                <p class="text-justify">{{ i.text }}<br>
+               <sub>{{ i.created_date }}</sub> <a href="{% url 're_twit' pk=i.id %}"><i class="fas fa-retweet"></i></a></p>
            </div>
         {% endfor %}
         <div class="pagination">
     <span class="step-links">
-        {% if mess.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ mess.previous_page_number }}">previous</a>
-        {% endif %}
+{#        {% if mess.has_previous %}#}
+{#            <a href="?page=1">&laquo; first</a>#}
+{#            <a href="?page={{ mess.previous_page_number }}">previous</a>#}
+{#        {% endif %}#}
 
         <span class="current">
-            Page {{ mess.number }} of {{ mess.paginator.num_pages }}.
+            {% bootstrap_pagination mess %}
+
         </span>
 
-        {% if mess.has_next %}
-            <a href="?page={{ mess.next_page_number }}">next</a>
-            <a href="?page={{ mess.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
+{#       {% if mess.has_next %}#}
+{#            <a href="?page={{ mess.next_page_number }}">next</a>#}
+{#            <a href="?page={{ mess.paginator.num_pages }}">last &raquo;</a>#}
+{#        {% endif %}#}
     </span>
 </div>
         </div>

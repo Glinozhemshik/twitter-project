@@ -6,6 +6,6 @@
             {% csrf_token %}
             {% bootstrap_form form %}
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Edit Twit</button>
-            <a href="/user/{{ user.id }}" class="btn btn-outline-warning my-2 my-sm-0" type="submit">Cancel</a>
+            <a href="/user/{{ user.id }}" class="btn btn-outline-warning my-2 my-sm-" type="submit">Cancel</a>
         </form>
 {% endblock %}

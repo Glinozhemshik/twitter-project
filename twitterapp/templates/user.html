@@ -1,10 +1,13 @@
-
  {% extends 'base.html' %}
  {% block content %}
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
        {% for i in mess %}
            <div class="col-md-12">
-                <p class="text-warning">{{ i.text }}<a href="{% url 'edit_twit' pk=i.id%}"><i class="fas fa-pencil-alt"></i></a></p>
-               <strong>{{ i.created_date }}</strong><br>
+                <p class="text-justify">{{ i.text }}<a href="{% url 'edit_twit' pk=i.id%}"><i class="fas fa-pencil-alt"></i><br></a><sub>{{ i.created_date }}</sub></p>
+               {% for re in i.re_twit.all %}
+                    {% if re.username == user.username %} <i class="fas fa-retweet"></i> {% endif %}
+                {% endfor %}
+
            </div>
         {% endfor %}
  {% endblock %}

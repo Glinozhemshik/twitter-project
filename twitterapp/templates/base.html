@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load staticfiles %}
 <!-- saved from url=(0061)http://bootstrap-4.ru/docs/4.1/examples/sticky-footer-navbar/ -->
@@ -7,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Пример на bootstrap 4: Прижатый футер отображается в нижней части страницы, когда содержимое окна слишком короткое. Панель навигации в верхней части.">
     <meta name="author" content="">
-    <link rel="icon" href="">
+    <link rel="icon" href="/static/bootstrap/base/twitter.ico">
 
     <title>twitter-project</title>
 
@@ -47,11 +46,13 @@
               <a class="nav-link" href="http://127.0.0.1:8000/">Главная <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
+                {% if user.is_active %}
+              <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/accounts/logout/">Выйти</a>
+                {% else %}
               <a class="nav-link" href="http://127.0.0.1:8000/accounts/login/">Вход</a>
             </li>
-               <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/accounts/logout/">Выход</a>
-            </li>
+                {% endif %}
           </ul>
         </div>
       </nav>
