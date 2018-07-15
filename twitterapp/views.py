@@ -1,16 +1,19 @@
+import re
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from twitterapp.models import Twit
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from twitterapp.forms import TwitForm
+from twitterapp.forms import TwitForm, EditProfile
+from django.contrib.auth.models import User
 
 
-# вывод страницы авторизации
+
 def login(request):
     return render(request, 'account/login.html')
 
 
-# заносит твит в базу данных
+
 
 def form_twit(request):
     if request.method == "POST":
@@ -20,13 +23,9 @@ def form_twit(request):
             form.user = request.user
             form.save()
             return redirect("/")
-    # error = False
-    # a = request.GET.get('text_message', '')
-    # if str(a) != '' and len(a) <= 250:
-    #   i = Twit.objects.create(user=request.user, text=a)
-    #   i.save()
+
     else:
-        #    error = "Error"
+
         form = TwitForm()
         mess = Twit.objects.all()
         paginator = Paginator(mess, 10)
@@ -53,7 +52,7 @@ def edit_twit(request, pk):
             return redirect("/user/{}".format(request.user.id))
     else:
         form = TwitForm(instance=mess)
-        return render(request, 'edit.html', {'form': form})
+        return render(request, 'twit_edit.html', {'form': form})
 
 
 def retwit(request, pk):
@@ -61,3 +60,36 @@ def retwit(request, pk):
     mess.re_twit.add(request.user)
     mess.save()
     return redirect("/")
+
+
+def edit_profile(request):
+    user = get_object_or_404(User, id=request.user.id)
+    if request.method == 'POST':
+        form = EditProfile(data=request.POST, instance=user)
+        if form.is_valid():
+            first_name = form.cleaned_data["first_name"]
+            match = re.match("^[a-z, A-Z]+\w+$", first_name)
+            if match is not None:
+                form.save()
+            return redirect('/user/profile/'.format(request.user.id))
+    else:
+        form = EditProfile(instance=user)
+        return render(request, 'profile.html', {'form': form})
+
+
+def twit_single(request, pk):
+    mess = get_object_or_404(Twit, pk=pk)
+    if request.method == "POST":
+        form = TwitForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user
+            form.answers = mess
+            form.save()
+            return redirect("/message/{}".format(pk))
+    else:
+        answers = Twit.objects.filter(answers=mess)
+        form = TwitForm()
+    return render(request, "twit_answer.html", {"mess": mess,
+                                                "form": form,
+                                                "answers": answers})
