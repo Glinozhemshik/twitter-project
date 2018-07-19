@@ -93,8 +93,8 @@ DATABASES = {
         'NAME': 'twitter',
         'USER': 'dbuser',
         'PASSWORD': 'ef6hpsg75kw2',
-        # 'HOST': 'localhost',
-        # 'PORT': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 # Password validation
