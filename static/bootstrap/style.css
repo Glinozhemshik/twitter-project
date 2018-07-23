@@ -1,0 +1,20 @@
+.twit-item-twit {
+	border-bottom: 1px solid #ccc;
+}
+
+.twit-item-twit:first-child {
+	border-top: 1px solid #ccc;
+}
+
+.twit-item {
+	display: block;
+	width: 100%;
+	text-decoration: none;
+	text-align: center;
+	color: #212529;
+}
+
+.twit-item:hover {
+	text-decoration: none;
+	color: #212529;
+}
