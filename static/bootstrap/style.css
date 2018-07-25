@@ -1,0 +1,32 @@
+body {
+	background-color: #e6ecf0;
+}
+
+.twit-item-twit {
+	border: 1px solid #ccc;
+	border-top: none;
+	padding-right: 0;
+	padding-left: 0;
+
+}
+
+.twit-item-twit:hover {
+	background-color: #f1f1f1;
+}
+
+.twit-item {
+	display: block;
+	width: 100%;
+	text-decoration: none;
+	text-align: center;
+	color: #212529;
+}
+
+.twit-item:hover {
+	text-decoration: none;
+	color: #212529;
+}
+
+.retwit {
+	margin-left: 15px;
+}
