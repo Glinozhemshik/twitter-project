@@ -1,9 +1,17 @@
-.twit-item-twit {
-	border-bottom: 1px solid #ccc;
+body {
+	background-color: #e6ecf0;
 }
 
-.twit-item-twit:first-child {
-	border-top: 1px solid #ccc;
+.twit-item-twit {
+	border: 1px solid #ccc;
+	border-top: none;
+	padding-right: 0;
+	padding-left: 0;
+
+}
+
+.twit-item-twit:hover {
+	background-color: #f1f1f1;
 }
 
 .twit-item {
@@ -17,4 +25,8 @@
 .twit-item:hover {
 	text-decoration: none;
 	color: #212529;
+}
+
+.ritwit {
+	margin-left: 15px;
 }
