@@ -16,7 +16,7 @@
         <div class="row">
         {% for i in mess %}
            <div class="col-md-12 twit-item-twit">
-                <a href="{% url 'twit_single' pk=i.id %}" class="twit-item">
+                <a href="{% url 'twit_single' pk=i.id %}" class="twit-item"></a>
                     <h6>{% if i.user.first_name %}{{ i.user.first_name }} {% else %} anon {% endif %}</h6>
                     <p class="text-justify">
                         {{ i.text }}<br>
@@ -24,7 +24,6 @@
                         <a href="{% url 're_twit' pk=i.id %}"><i class="fas fa-retweet ritwit"></i>
                         </a>
                     </p>
-                </a>
            </div>
         {% endfor %}
         <div class="pagination">
