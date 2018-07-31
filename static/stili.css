@@ -8,7 +8,6 @@ body {
 	padding-right: 0;
 	padding-left: 0;
 	position: relative;
-	text-align: center;
 
 }
 
@@ -35,5 +34,4 @@ body {
 .ritwit {
 	margin-left: 15px;
 	z-index: 200;
-	position: relative;
 }
