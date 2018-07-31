@@ -34,4 +34,5 @@ body {
 .ritwit {
 	margin-left: 15px;
 	z-index: 200;
+	position: relative;
 }
